@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    padding: 0;
+    cursor: url('../img/cur330.cur'), auto;
+    background: url('../img/background2.jpg') no-repeat;
+    overflow: hidden;
+}
+
+.draggable {
+    position: absolute;
+}
+
+.resizable {
+    /*resize: both;
+    overflow: auto;*/
+}
+
+.window-wrapper {
+    min-width: 500px;
+    min-height: 200px;
+    height: 350px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #f7f7f7;
+    opacity: 0.94;
+    border: solid 1px #858585;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.5);
+}
+
+.window-head {
+    width: auto;
+    height: 23px;
+    background-image: url('../img/mode_normal.png');
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.window-buttons {
+    width: 11%;
+    margin-left: 3px;
+    margin-top: 2px;
+    display: inline-block;
+}
+
+.window-btn {
+    margin-left: -3px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+
+}
+
+.win-close {
+    background: url('../img/w_close_normal.png');
+}
+
+.win-close:hover {
+    background: url('../img/w_close_active.png');
+}
+
+.win-minimize {
+    background: url('../img/w_minimize_normal.png');
+}
+
+.win-minimize:hover {
+    background: url('../img/w_minimize_active.png');
+}
+
+.win-maximize {
+    background: url('../img/w_restore_normal.png');
+}
+
+.win-maximize:hover {
+    background: url('../img/w_restore_active.png');
+}
+
+.window-title {
+    width: 87%;
+    height: 81%;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.window-content {
+    margin-left: 8px;
+    margin-left: 2px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 88%;
+}
+
+.window-content img {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.window-content iframe {
+    width: 98%;
+    height: 96%;
+    border: none;
+
+}
+
+.icon-wrapper {
+    margin-left: 20px;
+    margin-top: 20px;
+    position: relative;
+    width: 64px;
+    height: 105px;
+}
+
+.icon-image-content {
+    width: 100%;
+    height: 80%;
+}
+
+.icon-image-content img {
+    margin-left: -5px;
+    width: 104%;
+}
+
+.icon-description p {
+    margin-top: 2px;
+    font-family: 'Comic Sans MS';
+    font-size: 14px;
+    color: rgba(252, 234, 234, 0.97);
+    text-align: center;
+    text-shadow: 5px 5px 10px black;
+}

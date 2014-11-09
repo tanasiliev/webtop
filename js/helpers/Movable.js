@@ -1,4 +1,5 @@
-(function () {
+define(function () {
+
     var startPos = {
         x: 0,
         y: 0
@@ -24,7 +25,6 @@
 
             offsetPos.x = ExtractNumber(target.style.left);
             offsetPos.y = ExtractNumber(target.style.top);
-
 
             _dragElement = target;
 
@@ -75,10 +75,10 @@
         attachEventToElement.onmousedown = onMouseDown;
     };
 
-    if (!window.movable) {
-        window.movable = {
-            make: makeMovable
-        }
-    }
+    var Movable = {
+        make: makeMovable
 
-})();
+    };
+
+    return Movable;
+});
