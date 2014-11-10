@@ -12,21 +12,21 @@ define([
             this.render();
             this.attachEvents();
         },
-        module: new WindowModel(),
+        model: new WindowModel(),
         render: function () {
             var self = this;
-            var module = self.module;
+            var model = self.model;
 
             // get and render template
             var template = document.getElementById("window-template").innerHTML;
             this.el = this.base.renderTempalte(template);
 
             var titleElement = self.el.getElementsByClassName('window-title')[0];
-            module.makeMovable(this.el, titleElement);
+            model.makeMovable(this.el, titleElement);
 
-            module.el = self.el;
-            module.windows++;
-            module.makeResizable();
+            model.el = self.el;
+            model.windows++;
+            model.makeResizable();
 
             // show the content
             var contentElement = self.el.getElementsByClassName("window-content")[0];
@@ -44,10 +44,10 @@ define([
         },
         attachEvents: function () {
             var self = this;
-            var module = self.module;
+            var model = self.model;
             var events = [];
             var selectWindow = function () {
-                module.el = self.el;
+                model.el = self.el;
             };
             var eventObj = {
                 el: this.el, event: "onmousedown", action: selectWindow
@@ -64,7 +64,7 @@ define([
                         el: element,
                         event: "onclick",
                         action: function () {
-                            module[action]();
+                            model[action]();
                         }
                     };
                     events.push(obj);

@@ -9,7 +9,7 @@ define([
         }
     };
 
-    var WindowModule = function () {
+    var WindowModel = function () {
 
         this._el = null;
         this._windows = 0;
@@ -32,7 +32,7 @@ define([
         });
     };
 
-    WindowModule.prototype = {
+    WindowModel.prototype = {
 
         close: function () {
             document.body.removeChild(this._el.parentElement);
@@ -74,7 +74,7 @@ define([
         }
     };
 
-    return WindowModule;
+    return WindowModel;
 });
 
 
