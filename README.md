@@ -5,7 +5,7 @@ Desktop simulator
 
 
 
-![contributors](http://http://i42.photobucket.com/albums/e316/tanasiliev/webtop_zps462d2d7a.png)
+![contributors](http://i42.photobucket.com/albums/e316/tanasiliev/webtop_zps462d2d7a.png)
 
 
    
