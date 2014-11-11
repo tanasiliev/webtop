@@ -5,10 +5,10 @@ define([
 ], function (Class, View, WindowModel) {
 
     var WindowView = Class.create({
-        init: function (title, contentType) {
+        init: function (title, type) {
             this.el = null;
             this.title = title;
-            this.contentType = contentType;
+            this.type = type;
             this.render();
             this.attachEvents();
         },
@@ -30,13 +30,13 @@ define([
 
             // show the content
             var contentElement = self.el.getElementsByClassName("window-content")[0];
-            if (this.contentType == "img") {
+            if (this.type == "img") {
                 var img = document.createElement("img");
                 img.src = 'assets/img/' + this.title;
                 contentElement.appendChild(img);
                 self.el.css({ height: img.height + 80 + "px"});
             }
-            else if(this.contentType == "doc"){
+            else if(this.type == "doc"){
                 var textarea = document.createElement("textarea");
                 textarea.value = "Some Text Content";
                 contentElement.appendChild(textarea );

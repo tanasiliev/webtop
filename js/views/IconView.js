@@ -1,9 +1,8 @@
 define([
     'helpers/Class',
     'views/View',
-    'views/WindowView',
-    'views/RightClickWindowView',
-], function (Class, View, WindowView, RCWindowView) {
+    'models/IconModel'
+], function (Class, View, IconModel) {
 
     var IconView = Class.create({
         init: function (name, type) {
@@ -13,10 +12,12 @@ define([
             this.render();
             this.attachEvents();
         },
+        model: IconModel,
         render: function () {
             // get and render icon template
             var template = document.getElementById("icon-template").innerHTML;
             this.el = this._base.renderTempalte(template);
+            this.model.el = this.el;
 
             // set icon's name
             var pName = this.el.getElementsByClassName("icon-name")[0];
@@ -31,7 +32,8 @@ define([
             var self = this;
             var events = [];
             var onIconClick = function () {
-                new WindowView(self.name, self.type);
+                /*new WindowView(self.name, self.type);*/
+                self.model.open.call(self);
             };
             var eventObj = {
                 el: this.el, event: "onclick", action: onIconClick
@@ -42,9 +44,7 @@ define([
             // handle custom right click event
             this.el.addEventListener('contextmenu', function (ev) {
                 ev.preventDefault();
-
-                RCWindowView.show(ev, self);
-
+                self.model.showPopup(self, ev, IconView);
             });
         }
 
