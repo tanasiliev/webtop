@@ -19,7 +19,7 @@ define([
 
             // get and render template
             var template = document.getElementById("window-template").innerHTML;
-            this.el = this.base.renderTempalte(template);
+            this.el = this._base.renderTempalte(template);
 
             var titleElement = self.el.getElementsByClassName('window-title')[0];
             model.makeMovable(this.el, titleElement);
@@ -34,12 +34,17 @@ define([
                 var img = document.createElement("img");
                 img.src = 'assets/img/' + this.title;
                 contentElement.appendChild(img);
-                self.el.css({width: img.width + 80 + "px", height: img.height + 80 + "px"});
+                self.el.css({ height: img.height + 80 + "px"});
+            }
+            else if(this.contentType == "doc"){
+                var textarea = document.createElement("textarea");
+                textarea.value = "Some Text Content";
+                contentElement.appendChild(textarea );
             }
             else {
-                var iFrame = document.createElement("iframe");
-                iFrame.src = 'assets/data/' + this.title;
-                contentElement.appendChild(iFrame);
+                 var iFrame = document.createElement("iframe");
+                 iFrame.src = 'assets/data/' + this.title;
+                 contentElement.appendChild(iFrame);
             }
         },
         attachEvents: function () {
@@ -70,7 +75,7 @@ define([
                     events.push(obj);
                 })(action);
             }
-            this.base.attachEvents(events);
+            this._base.attachEvents(events);
         }
 
     });

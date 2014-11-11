@@ -2,13 +2,6 @@ define([
     'helpers/Movable'
 ], function (Movable) {
 
-    HTMLElement.prototype.css = function (obj) {
-        for (var prop in obj) {
-            if (this.style.hasOwnProperty(prop))
-                this.style[prop] = obj[prop];
-        }
-    };
-
     var WindowModel = function () {
 
         this._el = null;
@@ -65,7 +58,7 @@ define([
             newEl.style.zIndex = 1;
         },
         setPosition: function () {
-            var distance = (this._windows + 1 ) * 10 + 200 + "px";
+            var distance = (this._windows + 1 ) * 12 + 150 + "px";
             this._el.css({ top: distance, left: distance});
         },
         makeMovable: Movable.make,

@@ -3,8 +3,8 @@ define(function () {
     var Class = {
         create: function (properties) {
             var f = function () {
-                if (this._superConstructor) {
-                    this.base = new this._superConstructor(arguments);
+                if (this._baseConstructor) {
+                    this._base = new this._baseConstructor(arguments);
                 }
                 this.init.apply(this, arguments);
             };
@@ -22,7 +22,7 @@ define(function () {
     Function.prototype.inherit = function (parent) {
         var oldPrototype = this.prototype;
         this.prototype = new parent();
-        this.prototype._superConstructor = parent;
+        this.prototype._baseConstructor = parent;
         for (var prop in oldPrototype) {
             this.prototype[prop] = oldPrototype[prop];
         }

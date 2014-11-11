@@ -2,6 +2,13 @@ define([
      'helpers/Class'
 ], function(Class){
 
+    HTMLElement.prototype.css = function (obj) {
+        for (var prop in obj) {
+            if (this.style.hasOwnProperty(prop))
+                this.style[prop] = obj[prop];
+        }
+    };
+
     var View = Class.create({
         init: function () {
 
