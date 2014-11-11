@@ -19,7 +19,7 @@ define([
         },
         attachEvents: function () {
             var self = this;
-            self.el.onclick = function () {
+            document.onclick = function () {
                 self.el.css({ display: ""});
             };
 

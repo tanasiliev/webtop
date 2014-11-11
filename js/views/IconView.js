@@ -17,7 +17,6 @@ define([
             // get and render icon template
             var template = document.getElementById("icon-template").innerHTML;
             this.el = this._base.renderTempalte(template);
-            this.model.el = this.el;
 
             // set icon's name
             var pName = this.el.getElementsByClassName("icon-name")[0];
@@ -26,20 +25,17 @@ define([
             // set icon's image
             var iconImage = this.el.getElementsByClassName("icon-img")[0];
             iconImage.src = "assets/img/" + this.type + ".png";
+            this.model.makeMovable(this.el, iconImage);
 
         },
         attachEvents: function () {
             var self = this;
-            var events = [];
-            var onIconClick = function () {
-                /*new WindowView(self.name, self.type);*/
+            this.el.ondblclick = function () {
                 self.model.open.call(self);
             };
-            var eventObj = {
-                el: this.el, event: "onclick", action: onIconClick
+            this.el.onlclick = function () {
+                /*self.model.el = self.el; changeZIndex*/
             };
-            events.push(eventObj);
-            this._base.attachEvents(events);
 
             // handle custom right click event
             this.el.addEventListener('contextmenu', function (ev) {

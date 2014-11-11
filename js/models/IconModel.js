@@ -2,7 +2,7 @@ define([
     'helpers/Movable',
     'views/WindowView',
     'models/PopupModel',
-    'views/PopupView'
+    'views/PopupView'  // !important
 ], function (Movable, WindowView, PopupModel, PopupView) {
 
     var IconModel = function () {
