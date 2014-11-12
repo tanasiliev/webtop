@@ -6,7 +6,14 @@ define([
 ], function (Movable, WindowView, PopupModel, PopupView) {
 
     var IconModel = function () {
-        this.el = null;
+        this._el = null;
+        this.__defineGetter__("el", function () {
+            return this._el;
+        });
+        this.__defineSetter__("el", function (val) {
+            this._el && this.changeZIndex(val);
+            this._el = val;
+        });
     };
 
     IconModel.prototype = {
@@ -19,6 +26,10 @@ define([
         },
         delete: function () {
             this.el.style.visibility = "hidden";
+        },
+        changeZIndex: function (newEl) {
+            this._el.style.zIndex = 0;
+            newEl.style.zIndex = 1;
         },
         makeMovable: Movable.make
     };

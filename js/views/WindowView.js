@@ -12,7 +12,7 @@ define([
             this.render();
             this.attachEvents();
         },
-        model: new WindowModel(),
+        model: WindowModel,
         render: function () {
             var self = this;
             var model = self.model;

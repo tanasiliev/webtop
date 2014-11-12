@@ -67,7 +67,7 @@ define([
         }
     };
 
-    return WindowModel;
+    return new WindowModel;
 });
 
 

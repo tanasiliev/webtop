@@ -33,15 +33,16 @@ define([
             this.el.ondblclick = function () {
                 self.model.open.call(self);
             };
-            this.el.onlclick = function () {
-                /*self.model.el = self.el; changeZIndex*/
+            this.el.onmousedown = function () {
+                self.model.el = self.el;
             };
 
             // handle custom right click event
             this.el.addEventListener('contextmenu', function (ev) {
                 ev.preventDefault();
                 self.model.showPopup(self, ev, IconView);
-            });
+                return false;
+            },false);
         }
 
     });
