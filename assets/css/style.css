@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
     cursor: url('../img/cur330.cur'), auto;
-    background: url('../img/background2.jpg') no-repeat;
+    background: url('../img/background.jpg') no-repeat;
+    background-size: 1280px 800px;
     font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
     overflow: hidden;
 }
@@ -15,6 +16,20 @@ body {
     /*resize: both;
     overflow: auto;*/
 }
+
+/*.taskbar {
+    width: auto;
+    height: 19px;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+    background: url('../img/Screen.png')repeat-x;
+}
+
+.logo {
+    width: auto;
+    margin-left: 7px;
+    background: url('../img/apple-logo.png')no-repeat;
+}*/
 
 .window-wrapper {
     min-width: 490px;
