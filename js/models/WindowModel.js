@@ -28,7 +28,7 @@ define([
     WindowModel.prototype = {
 
         close: function () {
-            document.body.removeChild(this._el.parentElement);
+            document.body.removeChild(this._el);
         },
         maximize: function () {
             if (this.oldPosition) {

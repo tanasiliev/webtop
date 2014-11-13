@@ -1,3 +1,10 @@
+require.config({
+    paths: {
+        controller: 'controllers/AppController'
+    }
+});
+
+
 define([
     'views/IconView'
 ], function (IconView) {

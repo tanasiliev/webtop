@@ -10,7 +10,6 @@ define([
             this.name = name;
             this.type = type;
             this.render();
-            this.attachEvents();
         },
         model: IconModel,
         render: function () {
@@ -26,6 +25,12 @@ define([
             var iconImage = this.el.getElementsByClassName("icon-img")[0];
             iconImage.src = "assets/img/" + this.type + ".png";
             this.model.makeMovable(this.el, iconImage);
+
+            var self = this;
+            self.el.onmouseover = function () {
+                self.attachEvents();
+                self.el.onmouseover = null;
+            }
 
         },
         attachEvents: function () {

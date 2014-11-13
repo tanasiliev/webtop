@@ -17,19 +17,43 @@ body {
     overflow: auto;*/
 }
 
-/*.taskbar {
+.taskbar {
     width: auto;
-    height: 19px;
-    border-top: 1px solid silver;
-    border-bottom: 1px solid silver;
-    background: url('../img/Screen.png')repeat-x;
+    height: 22px;
+    border-bottom: 2px solid #ffffff;
+    background: url('../img/taskbar_.png') repeat-x;
 }
 
 .logo {
-    width: auto;
-    margin-left: 7px;
-    background: url('../img/apple-logo.png')no-repeat;
-}*/
+    float: left;
+    width: 22px;
+    height: inherit;
+    margin-left: 13px;
+    margin-right: 11px;
+    background: url('../img/applelogo_2.png') no-repeat;
+    background-size: 20px 20px;
+}
+
+.taskbar-window {
+    float: left;
+    height: inherit;
+    width: 160px;
+    border: solid 1px #8c8c8c;
+}
+
+.taskbar-window:hover {
+    background: rgba(133, 133, 133, 0.35);
+}
+
+.taskbar-window p {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    font-family: "Georgia",serif;
+    font-size: 12px;
+}
+
+
 
 .window-wrapper {
     min-width: 490px;

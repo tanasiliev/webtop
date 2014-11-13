@@ -10,7 +10,6 @@ define([
             this.title = title;
             this.type = type;
             this.render();
-            this.attachEvents();
         },
         model: WindowModel,
         render: function () {
@@ -46,18 +45,18 @@ define([
                  iFrame.src = 'assets/data/' + this.title;
                  contentElement.appendChild(iFrame);
             }
+
+            self.el.onmouseover = function () {
+                self.attachEvents();
+                self.el.onmouseover = null;
+            }
         },
         attachEvents: function () {
             var self = this;
             var model = self.model;
-            var events = [];
-            var selectWindow = function () {
+            this.el.onmousedown = function () {
                 model.el = self.el;
             };
-            var eventObj = {
-                el: this.el, event: "onmousedown", action: selectWindow
-            };
-            events.push(eventObj);
 
             // attach event to window buttons
             var buttons = ["close", "minimize", "maximize"];
@@ -65,17 +64,11 @@ define([
                 var action = buttons[b];
                 var element = self.el.getElementsByClassName("win-" + action)[0];
                 (function (action) {
-                    var obj = {
-                        el: element,
-                        event: "onclick",
-                        action: function () {
-                            model[action]();
-                        }
+                    element.onclick = function () {
+                        model[action]();
                     };
-                    events.push(obj);
                 })(action);
             }
-            this._base.attachEvents(events);
         }
 
     });

@@ -2,8 +2,9 @@ define([
     'helpers/Movable',
     'views/WindowView',
     'models/PopupModel',
-    'views/PopupView'  // !important
-], function (Movable, WindowView, PopupModel, PopupView) {
+    'views/PopupView',  // !important
+    'controller'
+], function (Movable, WindowView, PopupModel, PopupView, controller) {
 
     var IconModel = function () {
         this._el = null;
@@ -22,6 +23,7 @@ define([
             PopupModel.show(icon, event, iconView);
         },
         open: function () {
+            controller.fire({"window:open" : this});
             new WindowView(this.name, this.type);
         },
         delete: function () {

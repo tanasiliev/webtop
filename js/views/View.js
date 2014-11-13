@@ -1,6 +1,6 @@
 define([
-     'helpers/Class'
-], function(Class){
+    'helpers/Class'
+], function (Class) {
 
     HTMLElement.prototype.css = function (obj) {
         for (var prop in obj) {
@@ -23,8 +23,9 @@ define([
             var container = document.createElement('div');
             document.body.appendChild(container);
             container.innerHTML = stringHtml;
-            var el = container.children[0];
-            // todo - remove unneeded div container
+            var el = container.children[0].cloneNode(true);
+            document.body.appendChild(el);
+            document.body.removeChild(container);
             return el;
         }
     });
