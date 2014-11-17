@@ -1,34 +1,25 @@
 define([
-    'helpers/Movable'
-], function (Movable) {
+    'helpers/Movable',
+    'views/TaskbarWindowView',
+    'controller'
+], function (Movable, TaskbarWindowView, controller) {
 
-    var WindowModel = function () {
-
-        this._el = null;
-        this._windows = 0;
+    var WindowModel = function (el, name) {
+        this.el = el;
+        this.name = name;
+        this.taskbarElement = null;
         this.oldPosition = null;
-        this.__defineGetter__("el", function () {
-            return this._el;
-        });
-        this.__defineSetter__("el", function (val) {
-            this._el && this.changeZIndex(val);
-            this._el = val;
-        });
-
-        this.__defineGetter__("windows", function () {
-            return this._windows;
-        });
-
-        this.__defineSetter__("windows", function (val) {
-            this.setPosition();
-            this._windows = val;
-        });
+        this.setPosition();
+        this.createTaskbar();
+        this.setOnTop();
     };
 
     WindowModel.prototype = {
 
         close: function () {
-            document.body.removeChild(this._el);
+            document.body.removeChild(this.el);
+            this.taskbarElement.parentElement.removeChild(this.taskbarElement);
+            controller.closeWindow(this.name);
         },
         maximize: function () {
             if (this.oldPosition) {
@@ -41,33 +32,74 @@ define([
                 height: this.el.style.height
             };
             this.oldPosition = cssObj;
-            var w = window.innerWidth - 4 + 'px';
+            var w = window.innerWidth - 2 + 'px';
             var h = window.innerHeight - 4 + 'px';
-            var style = { top: 0, left: 0, width: w, height: h};
-            this._el.css(style);
+            var style = { top: "24px", left: "0px", width: w, height: h};
+            this.el.css(style);
         },
         minimize: function () {
             if (!this.oldPosition) {
                 return false;
             }
-            this._el.css(this.oldPosition);
+            this.el.css(this.oldPosition);
             this.oldPosition = null;
         },
-        changeZIndex: function (newEl) {
-            this._el.style.zIndex = 0;
-            newEl.style.zIndex = 1;
+        createTaskbar: function () {
+            var tb = new TaskbarWindowView(this.name);
+            tb.model = this;
+            this.taskbarElement = tb.el;
+        },
+        utility: (function () {
+            var counter = 0;
+            var selected = {
+                window: null,
+                taskbar: null
+            };
+            return {
+                counter: function () {
+                    return ++counter;
+                },
+                selected: function () {
+                    return selected;
+                }
+            }
+        })(),
+        setOnTop: function () {
+            var selectedItem = this.utility.selected();
+            if (selectedItem.window) {
+                selectedItem.window.style.zIndex = 1;
+                selectedItem.taskbar.classList.remove("selected");
+            }
+            this.el.style.zIndex = 2;
+            this.taskbarElement.classList.add("selected");
+            selectedItem.window = this.el;
+            selectedItem.taskbar = this.taskbarElement;
+        },
+        toggle: function () {
+            var el = this.el;
+            if (this.taskbarElement.classList.contains("selected")) {
+                if (el.style.display) {
+                    el.style.display == "block" ?
+                        el.style.display = "none" :
+                        el.style.display = "block";
+                }
+                else {
+                    el.style.display = "none"
+                }
+            }
+            else {
+                this.setOnTop();
+                el.style.display = "none" && (el.style.display = "block");
+            }
         },
         setPosition: function () {
-            var distance = (this._windows + 1 ) * 12 + 150 + "px";
-            this._el.css({ top: distance, left: distance});
+            var distance = (this.utility.counter() ) * 12 + 150 + "px";
+            this.el.css({ top: distance, left: distance});
         },
-        makeMovable: Movable.make,
-        makeResizable: function () {
-            this._el.classList.add("resizable");
-        }
+        makeMovable: Movable.make
     };
 
-    return new WindowModel;
+    return WindowModel;
 });
 
 

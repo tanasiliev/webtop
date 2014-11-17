@@ -19,12 +19,12 @@ define([
                 eventObj.el[eventObj.event] = eventObj.action;
             }
         },
-        renderTempalte: function (stringHtml) {
+        renderTempalte: function (stringHtml, appendToEl) {
             var container = document.createElement('div');
             document.body.appendChild(container);
             container.innerHTML = stringHtml;
             var el = container.children[0].cloneNode(true);
-            document.body.appendChild(el);
+            (appendToEl || document.body ).appendChild(el);
             document.body.removeChild(container);
             return el;
         }

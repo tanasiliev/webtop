@@ -5,47 +5,44 @@ define([
 ], function (Class, View, WindowModel) {
 
     var WindowView = Class.create({
-        init: function (title, type) {
+        init: function (name, type) {
             this.el = null;
-            this.title = title;
+            this.model = null;
+            this.name = name;
             this.type = type;
             this.render();
         },
-        model: WindowModel,
         render: function () {
-            var self = this;
-            var model = self.model;
 
             // get and render template
             var template = document.getElementById("window-template").innerHTML;
             this.el = this._base.renderTempalte(template);
+            this.model = new WindowModel(this.el, this.name);
 
-            var titleElement = self.el.getElementsByClassName('window-title')[0];
-            model.makeMovable(this.el, titleElement);
+            var titleElement = this.el.getElementsByClassName('window-title')[0];
+            this.model.makeMovable(this.el, titleElement);
 
-            model.el = self.el;
-            model.windows++;
-            model.makeResizable();
 
             // show the content
-            var contentElement = self.el.getElementsByClassName("window-content")[0];
+            var contentElement = this.el.getElementsByClassName("window-content")[0];
             if (this.type == "img") {
                 var img = document.createElement("img");
-                img.src = 'assets/img/' + this.title;
+                img.src = 'assets/img/' + this.name;
                 contentElement.appendChild(img);
-                self.el.css({ height: img.height + 80 + "px"});
+                this.el.css({ height: img.height + 80 + "px"});
             }
-            else if(this.type == "doc"){
+            else if (this.type == "doc") {
                 var textarea = document.createElement("textarea");
                 textarea.value = "Some Text Content";
-                contentElement.appendChild(textarea );
+                contentElement.appendChild(textarea);
             }
             else {
-                 var iFrame = document.createElement("iframe");
-                 iFrame.src = 'assets/data/' + this.title;
-                 contentElement.appendChild(iFrame);
+                var iFrame = document.createElement("iframe");
+                iFrame.src = 'assets/data/' + this.name;
+                contentElement.appendChild(iFrame);
             }
 
+            var self = this;
             self.el.onmouseover = function () {
                 self.attachEvents();
                 self.el.onmouseover = null;
@@ -55,7 +52,7 @@ define([
             var self = this;
             var model = self.model;
             this.el.onmousedown = function () {
-                model.el = self.el;
+                model.setOnTop();
             };
 
             // attach event to window buttons
@@ -70,7 +67,6 @@ define([
                 })(action);
             }
         }
-
     });
     WindowView.inherit(View);
 

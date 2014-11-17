@@ -23,7 +23,9 @@ define([
             PopupModel.show(icon, event, iconView);
         },
         open: function () {
-            controller.fire({"window:open" : this});
+            if(controller.isOpen(this.name)){
+                return false;
+            }
             new WindowView(this.name, this.type);
         },
         delete: function () {
@@ -36,7 +38,7 @@ define([
         makeMovable: Movable.make
     };
 
-    return new IconModel;
+    return IconModel;
 });
 
 

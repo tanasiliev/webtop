@@ -11,7 +11,7 @@ define([
             this.type = type;
             this.render();
         },
-        model: IconModel,
+        model: new IconModel,
         render: function () {
             // get and render icon template
             var template = document.getElementById("icon-template").innerHTML;

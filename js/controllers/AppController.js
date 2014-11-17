@@ -1,26 +1,18 @@
-define([
-    'helpers/Observer'
-], function (Observer) {
+define(function () {
 
-
-
-    var onActionFire = function(obj) {
-             for(var key in obj){
-                 var itemName = key.split(":")[0];
-                 var actionName = key.split(":")[1];
-                 var data = obj[key];
-                 console.log(itemName);
-                 console.log(actionName);
-                 console.log(data);
-             }
-
+    var App = {
+        openedWindows : {},
+        isOpen: function (name) {
+            if (this.openedWindows[name]) {
+                return true;
+            }
+            this.openedWindows[name] = 1;
+            return false;
+        },
+        closeWindow: function (name) {
+            delete this.openedWindows[name];
+        }
     };
-    var App = function () {
 
-    };
-    var app = new App();
-    Observer.make(app);
-    app.subscribe(onActionFire);
-
-    return app;
+    return App;
 });

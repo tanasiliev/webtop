@@ -1,6 +1,7 @@
 define([
-    'views/WindowView'
-], function (WindowView) {
+    'views/WindowView',
+    'controller'
+], function (WindowView, controller) {
 
     var PopupModel = {
         el: null,
@@ -8,8 +9,7 @@ define([
         iconView: null,
         iconCounter: 0,
         show: function (icon, event, iconView) {
-            if(!this.el)
-            {
+            if (!this.el) {
 
             }
             this.el.css({
@@ -21,6 +21,9 @@ define([
             this.iconView = iconView;
         },
         open: function () {
+            if (controller.isOpen(this.icon.name)) {
+                return false;
+            }
             new WindowView(this.icon.name, this.icon.type);
         },
         delete: function () {

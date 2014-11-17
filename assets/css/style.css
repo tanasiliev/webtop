@@ -30,27 +30,34 @@ body {
     height: inherit;
     margin-left: 13px;
     margin-right: 11px;
+    padding-top: 1px;
     background: url('../img/applelogo_2.png') no-repeat;
-    background-size: 20px 20px;
+    background-size: 21px 21px;
 }
 
 .taskbar-window {
     float: left;
-    height: inherit;
+    height: 107%;
     width: 160px;
-    border: solid 1px #8c8c8c;
+    margin-left: -1px;
+   /* border: solid 1px #8c8c8c;*/
+    border-bottom: none;
+    border-top: none;
 }
 
-.taskbar-window:hover {
+.selected {
     background: rgba(133, 133, 133, 0.35);
+    border: none;
 }
 
 .taskbar-window p {
     margin: 0px;
-    padding: 0px;
+    padding: 2px;
+    color: rgba(39, 39, 47, 0.86);
+    font-size: 0.85em;
+    font-weight : 700;
     text-align: center;
     font-family: "Georgia",serif;
-    font-size: 12px;
 }
 
 
@@ -202,7 +209,7 @@ body {
     height: 120px;
     z-index: 12;
     margin: 3px;
-    background: #fdfdfd;
+    background: #f6f4f7;
     border: 1px solid;
     border-color: #cbcfe2 #c8cee7 #c4c7d7;
     border-radius: 3px;
@@ -210,18 +217,24 @@ body {
 
 .right-click-window span {
     display: block;
-    padding-top: 2px;
+    padding-top: 1px;
     padding-bottom: 2px;
     padding-left: 6px;
-    color: #808394;
+    color: #757788;
+    font-size: 0.85em;
+    font-weight : 700;
     text-shadow: 0 1px white;
-    border-top: 1px solid rgba(80, 28, 28, 0.1);
-    border-radius: 3px;
+    border-radius: 2px;
 }
+
+.right-click-window span:last-child {
+    padding-top: 3px;
+    border-top: 1px solid rgba(80, 28, 28, 0.1);
+}
+
 
 .right-click-window span:hover {
     color: white;
     text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-    border-color: #5a70b0 #495d98 #42558a;
-    background-image: linear-gradient(to bottom, #7688bd, #4e64a3);
+    background-image: linear-gradient(to bottom, #4d6df6, #284ef2);
 }

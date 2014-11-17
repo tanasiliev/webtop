@@ -4,7 +4,6 @@ require.config({
     }
 });
 
-
 define([
     'views/IconView'
 ], function (IconView) {
