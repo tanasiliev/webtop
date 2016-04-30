@@ -1,7 +1,7 @@
 Webtop
 ======
 
-Web Desktop  (alpha version tested only on Chrome) 
+Web Desktop 
 
 
 
